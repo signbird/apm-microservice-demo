@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: demo-gateway
+    index: ${random.long}
+#  cloud:
+#    config:
+#       name: ms-rainbow-stone-gateway
+#       uri: http://${ENV_CONFIG_IP:localhost}:${ENV_CONFIG_PORT:8888}
+#       profile: ${ENV_TYPE:test}
+#       label: master

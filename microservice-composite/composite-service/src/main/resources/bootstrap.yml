@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: composite-service
+    index: ${random.long}
+#  cloud:
+#    config:
+#      name: ms-composite-service
+#      uri: http://${ENV_CONFIG_IP:10.181.12.4}:${ENV_CONFIG_PORT:30202}
+#      profile: ${ENV_TYPE:dev}
+#      label: master
+#      failFast: true
