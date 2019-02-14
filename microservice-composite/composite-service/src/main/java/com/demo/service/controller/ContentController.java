@@ -1,22 +1,25 @@
 package com.demo.service.controller;
 
-import com.demo.common.dto.outside.GetPlayDownloadUrlReqOut;
-import com.demo.common.dto.outside.GetPlayDownloadUrlRspOut;
-import com.demo.common.dto.outside.QueryContentReqOut;
-import com.demo.common.dto.outside.QueryContentRspOut;
-import com.demo.service.service.IContentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.demo.common.dto.outside.GetPlayDownloadUrlReqOut;
+import com.demo.common.dto.outside.GetPlayDownloadUrlRspOut;
+import com.demo.common.dto.outside.QueryContentReqOut;
+import com.demo.common.dto.outside.QueryContentRspOut;
+import com.demo.service.service.IContentService;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
+@RefreshScope
 @RestController
 @RequestMapping("/apm")
 @Api(value = "内容相关接口", description = "内容API")

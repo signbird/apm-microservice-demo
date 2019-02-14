@@ -4,5 +4,5 @@ spring:
 server:
   port: 7080
   
-#进入页面http://localhost:7080/hystrix.stream
-#监控http://localhost:7077/hystrix.stream
+#进入页面http://localhost:7080/hystrix
+#监控http://localhost:20001/actuator/hystrix.stream
