@@ -12,7 +12,7 @@ import lombok.ToString;
 
 
 /**
- * 类描述: 本类是查询内容详情信息响应
+ * 本类是查询内容详情信息响应
  */
 @AllArgsConstructor
 @NoArgsConstructor

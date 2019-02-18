@@ -28,12 +28,18 @@ zuul:
     semaphore:
         max-semaphores: 1000000
     include-debug-header: false
+    AccessFilter:
+        pre:
+            disable: false
+    LogFilter:
+        pre:
+            disable: false
     routes:
-        serviceA:
-            path: /demo/serviceA/**
-            serviceId: demo-service-A
+        composite-service:
+            path: /apm/**
+            serviceId: composite-service
             strip-prefix: false
-        serviceB:
-            path: /demo/serviceB/**
-            serviceId: demo-service-B
-            strip-prefix: false 
+#        serviceB:
+#            path: /demo/serviceB/**
+#            serviceId: demo-service-B
+#            strip-prefix: false 

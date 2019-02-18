@@ -22,7 +22,7 @@ import io.swagger.annotations.ApiResponses;
 @RefreshScope
 @RestController
 @RequestMapping("/apm")
-@Api(value = "内容相关接口", description = "内容API")
+@Api(value = "内容相关接口")
 public class ContentController {
 
     @Autowired
@@ -37,9 +37,12 @@ public class ContentController {
         return contentService.queryContent(req);
     }
     
-    
     @RequestMapping(value = "/getPlayDownloadUrl", produces = { "application/json" }, method = RequestMethod.POST)
+    @ApiOperation(value = "获取播放地址", notes = "获取播放地址", response = GetPlayDownloadUrlRspOut.class, tags = {
+    "content" })
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "返回", response = GetPlayDownloadUrlRspOut.class),
+    @ApiResponse(code = 500, message = "Unexpected error", response = GetPlayDownloadUrlRspOut.class) })
     public @ResponseBody GetPlayDownloadUrlRspOut getPlayDownloadUrl(@RequestBody final GetPlayDownloadUrlReqOut req) {
-        return contentService.getPlayDownloadUrl(req);
+    	return contentService.getPlayDownloadUrl(req);
     }
 }

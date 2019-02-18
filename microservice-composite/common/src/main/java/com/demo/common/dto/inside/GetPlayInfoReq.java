@@ -12,7 +12,7 @@ import lombok.ToString;
 
 
 /**
- * 类描述: 本类是获取播放及下载地址请求
+ * 本类是获取播放及下载地址请求
  */
 @AllArgsConstructor
 @NoArgsConstructor

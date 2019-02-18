@@ -2,15 +2,15 @@ server:
   port: 8761
 eureka:
   server:
-    enable-self-preservation: false
+    enable-self-preservation: false #是否开启自我保护模式
   instance:
     hostname: eureka
     prefer-ip-address: true
     lease-expiration-duration-in-seconds: 10
     lease-renewal-interval-in-seconds: 10
   client:
-    registerWithEureka: false
-    fetchRegistry: false
+    registerWithEureka: true #是否向服务注册中心注册自己
+    fetchRegistry: false #是否从eureka服务器获取注册信息，单点false，集群true
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
       

@@ -14,7 +14,7 @@ import lombok.ToString;
 
 
 /**
- * 类描述: 本类是查询内容详情信息请求
+ * 查询内容详情信息请求
  */
 @AllArgsConstructor
 @NoArgsConstructor
