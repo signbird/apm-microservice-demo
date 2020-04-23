@@ -28,6 +28,16 @@ public class ContentController {
     @Autowired
     private IContentService contentService;
     
+    
+    @RequestMapping(value = "/get", produces = { "application/json" }, method = RequestMethod.GET)
+    @ApiOperation(value = "查询内容", notes = "查询内容", response = QueryContentRspOut.class, tags = {
+    "content" })
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "返回", response = QueryContentRspOut.class),
+    @ApiResponse(code = 500, message = "Unexpected error", response = QueryContentRspOut.class) })
+    public @ResponseBody QueryContentRspOut get() {
+        return contentService.queryContent(new QueryContentReqOut());
+    }
+    
     @RequestMapping(value = "/queryContent", produces = { "application/json" }, method = RequestMethod.POST)
     @ApiOperation(value = "查询内容", notes = "查询内容", response = QueryContentRspOut.class, tags = {
     "content" })

@@ -17,3 +17,28 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
     cache-refresh-executor-thread-pool-size: 10
+
+management.metrics:
+  enable:
+    jvm: true
+    tomcat: true
+    logback: true
+    process: true
+    system: true
+    spring: true
+  export:
+    atlas.enabled: true
+    influx:
+      enabled: true
+      auto-create-db: true
+      db: bqf
+#      step: 60s
+      uri: http://123.56.31.158:8086
+#      read-timeout: 30s
+      batchSize: 1000
+      password: 
+      user-name: 
+      
+rstone-metrics:
+   subcompany:  11
+   productline: 01

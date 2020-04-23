@@ -3,9 +3,9 @@ package com.demo.service.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import com.demo.common.client.ContentQueryClient;
+import com.demo.common.consts.ResultCodeAnn;
 import com.demo.common.dto.inside.GetContentReq;
 import com.demo.common.dto.inside.GetContentRsp;
 import com.demo.common.dto.inside.GetPlayInfoReq;
@@ -20,8 +20,8 @@ import com.demo.service.service.IContentService;
 @Service
 public class ContentServiceImpl extends BaseServiceImpl implements IContentService {
 
-	@Autowired
-    private RestTemplate restTemplate;
+//	@Autowired
+//    private RestTemplate restTemplate;
 	
 	@Autowired
 	private DemoConfig config;
@@ -31,6 +31,7 @@ public class ContentServiceImpl extends BaseServiceImpl implements IContentServi
     private ContentQueryClient contentQueryClient;
 
     @Override
+    @ResultCodeAnn
     public QueryContentRspOut queryContent(QueryContentReqOut req) {
         System.out.println("before client invoke getContent...config=" + config.getTest());
         
@@ -40,12 +41,13 @@ public class ContentServiceImpl extends BaseServiceImpl implements IContentServi
     }
 
     @Override
+    @ResultCodeAnn
     public GetPlayDownloadUrlRspOut getPlayDownloadUrl(GetPlayDownloadUrlReqOut req) {
         System.out.println("before client invoke getPlayDownloadUrl...");
         GetPlayInfoReq innerReq = new GetPlayInfoReq(req.getRequestHeader(), req.getContentCode());
-        GetPlayInfoRsp rsp = restTemplate.postForObject("http://content-query/contentCenter/getPlayInfo", innerReq, GetPlayInfoRsp.class, "");
+//        GetPlayInfoRsp rsp = restTemplate.postForObject("http://content-query/contentCenter/getPlayInfo", innerReq, GetPlayInfoRsp.class, "");
     	
-//        GetPlayInfoRsp rsp = contentQueryClient.getPlayInfo(innerReq);
+        GetPlayInfoRsp rsp = contentQueryClient.getPlayInfo(innerReq);
         return new GetPlayDownloadUrlRspOut(rsp.getResult(), rsp.getPlayInfo());
     }
 }

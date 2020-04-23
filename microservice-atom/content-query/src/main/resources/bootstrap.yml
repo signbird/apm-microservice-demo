@@ -1,7 +1,7 @@
 spring:
   application:
     name: content-query
-    index: ${random.long}
+#    index: ${random.long}
 #  cloud:
 #    config:
 #      name: ms-atom-content-query

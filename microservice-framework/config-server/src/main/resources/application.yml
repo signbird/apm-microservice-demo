@@ -13,7 +13,7 @@ spring:
         git:
           uri: https://github.com/signbird/springcloud-config.git
           username: chinabaiqiufei@126.com
-          password: xxxxx
+          password: 
           searchPaths: '{profile}'
 
 eureka:

@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
-import org.springframework.util.StringUtils;
 
 import com.demo.common.exception.BizException;
 
@@ -24,28 +23,21 @@ public class LogAspect extends BaseAspect {
     /**
      * 定义一个切点.
      */
-    @Pointcut("execution(public * com.migu.rstone.controller.*.*(..))")
+    @Pointcut("execution(public * com.demo.*.controller.*.*(..))")
     public void controller() {
     }
 
     /**
      * 定义一个切点.
      */
-    @Pointcut("execution(public * com.migu.rstone.client.*.*(..))")
+    @Pointcut("execution(public * com.demo.common.client.*.*(..))")
     public void client() {
     }
 
     /**
-     * 定义一个切点.
-     */
-    @Pointcut("execution(public * com.migu.rstone.outclient.*.*(..))")
-    public void outclient() {
-    }
-    
-    /**
      * 数据库访问切点.
      */
-    @Pointcut("execution(public * com.migu.rstone.dao.*.*(..))")
+    @Pointcut("execution(public * com.demo.*.dao.*.*(..))")
     public void dao() {
     }
 
@@ -130,56 +122,6 @@ public class LogAspect extends BaseAspect {
         return result;
     }
 
-    /**
-     * 方法被调用前执行.
-     *
-     * @param jp a join point
-     * @author huadq
-     */
-    @Around("outclient()")
-    public Object aroundOutClient(final ProceedingJoinPoint jp) throws Throwable {
-        String method = jp.getSignature().getName();
-        Object[] args = jp.getArgs();
-        String reqInfo = "";
-        if (null == args || args.length < 1 || null == args[0]) {
-            reqInfo = null;
-        } else {
-            for (Object obj : args) {
-                if(!StringUtils.isEmpty(obj)){
-                    reqInfo += object2string(obj) + " ";
-                }
-            }
-        }
-
-        String clientName ="";
-        try {
-            clientName = getClientName(jp.getTarget().toString());
-        } catch (Throwable e) {
-            LOG.warn(e.toString());
-        }
-
-        
-        LOG.info("invoke client {} method={}, params={}", clientName, method, reqInfo);
-        StopWatch clock = new StopWatch();
-        clock.start();
-        
-        Object result = null;
-        try {
-            result = jp.proceed();
-        } catch (BizException bz) {
-            clock.stop();
-            LOG.warn("error invoke client {} method={}, req={}, costs={}ms, BizException={}", clientName, method, reqInfo, clock.getTotalTimeMillis(), bz.toString());
-            throw bz;
-        } catch (Throwable e) {
-            clock.stop();
-            LOG.error("error invoke client {} method={}, req={}, costs={}ms,", clientName, method, reqInfo, clock.getTotalTimeMillis(), e);
-            throw e;
-        }
-        
-        clock.stop();
-        LOG.info("end invoke client {} method={}, rsp={}, req={}, costs={}ms", clientName, method, result, clock.getTotalTimeMillis(), reqInfo);
-        return result;
-    }
     
     /**
      * 方法被调用前执行.
